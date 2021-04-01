@@ -1,6 +1,6 @@
 # React Password Checklist
 [![npm version](https://badge.fury.io/js/react-password-checklist.svg)](https://badge.fury.io/js/react-password-checklist) ![Minzipped Size](https://img.shields.io/bundlephobia/minzip/react-password-checklist) ![NPM Downloads](https://img.shields.io/npm/dw/react-password-checklist) ![NPM License](https://img.shields.io/npm/l/react-password-checklist) 
-<br /> [![Build Status](https://travis-ci.org/sators/react-password-checklist.svg?branch=master)](https://travis-ci.org/sators/react-password-checklist) [![Coverage Status](https://coveralls.io/repos/github/sators/react-password-checklist/badge.svg?branch=master)](https://coveralls.io/github/sators/react-password-checklist?branch=master) [![Issues](https://img.shields.io/github/issues/sators/react-password-checklist)](https://github.com/sators/react-password-checklist/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/sators/react-password-checklist)](https://github.com/sators/react-password-checklist/pulls) [![Twitter](https://img.shields.io/twitter/follow/sators.svg?style=social&label=@sators)](https://twitter.com/sators)
+<br /> [![Build Status](https://travis-ci.org/sators/react-password-checklist.svg?branch=master)](https://travis-ci.org/sators/react-password-checklist) [![Coverage Status](https://coveralls.io/repos/github/sators/react-password-checklist/badge.svg?branch=master)](https://coveralls.io/github/sators/react-password-checklist?branch=master) [![Issues](https://img.shields.io/github/issues/sators/react-password-checklist)](https://github.com/sators/react-password-checklist/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/sators/react-password-checklist)](https://github.com/sators/react-password-checklist/pulls) [![Twitter](https://img.shields.io/twitter/follow/sators.svg?style=social&label=@sators)](https://twitter.com/helenapaixao)
 
 A React Component to display the success or failure of password strength rules that updates as a user types.
 
@@ -9,9 +9,9 @@ A React Component to display the success or failure of password strength rules t
 
 ## Install in your project
 
-`npm install --save react-password-checklist`
+`npm install --save react-senha-checklist`
 
-`yarn add react-password-checklist`
+`yarn add react-senha-checklist`
 
 _Note: react is a peer dependency. You should be using this in a React project._
 
@@ -19,7 +19,7 @@ _Note: react is a peer dependency. You should be using this in a React project._
 
 ```
 import React, {useState} from "react"
-import PasswordChecklist from "react-password-checklist"
+import PasswordChecklist from "react-senha-checklist"
 
 const SignUp = () => {
 	const [password, setPassword] = useState("")
