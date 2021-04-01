@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 
 * {
-	font-family: "Arial", "Helvetical", sans-serif;
+	font-family: "Roboto", "Helvetical", sans-serif;
 }
 
 body {

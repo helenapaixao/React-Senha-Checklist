@@ -13,6 +13,6 @@ storiesOf("ReactPasswordChecklist", module)
 				valueAgain={text("Password Again", "")}
 				minLength={number("Minimum Length", 8)}
 				onChange={action("onChange")}
-				rules={array("Rules", ["length","specialChar","number","capital","match"]) as Array<RuleNames>}
+				rules={array("Rules", ["length","specialChar","number","capital","match","equalNumber"]) as Array<RuleNames>}
 			/>
     )
