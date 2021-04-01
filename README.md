@@ -1,11 +1,12 @@
 # React Senha Checklist
-[![npm version](https://badge.fury.io/js/react-password-checklist.svg)](https://badge.fury.io/js/react-password-checklist) ![Minzipped Size](https://img.shields.io/bundlephobia/minzip/react-password-checklist) ![NPM Downloads](https://img.shields.io/npm/dw/react-password-checklist) ![NPM License](https://img.shields.io/npm/l/react-senha-checklist) 
+[![npm version](https://badge.fury.io/js/react-password-checklist.svg)](https://badge.fury.io/js/react-senha-checklist) ![Minzipped Size](https://img.shields.io/bundlephobia/minzip/react-senha-checklist) ![NPM Downloads](https://img.shields.io/npm/dw/react-senha-checklist) ![NPM License](https://img.shields.io/npm/l/react-senha-checklist) 
 <br /> [![Build Status](https://travis-ci.org/sators/react-senha-checklist.svg?branch=master)](https://travis-ci.org/sators/react-senha-checklist) [![Coverage Status](https://coveralls.io/repos/github/sators/react-senha-checklist/badge.svg?branch=master)](https://coveralls.io/github/sators/react-senha-checklist?branch=master) [![Issues](https://img.shields.io/github/issues/sators/react-senha-checklist)](https://github.com/sators/react-senha-checklist/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/sators/react-password-checklist)](https://github.com/sators/react-password-checklist/pulls) [![Twitter](https://img.shields.io/twitter/follow/sators.svg?style=social&label=@helenapaixao)](https://twitter.com/helenapaixao)
 
 A React Component to display the success or failure of password strength rules that updates as a user types.
 
 ## Example
-![React Password Checklist Demo](demo/demo.gif)
+
+https://i.picasion.com/pic90/7496f8895df49b059bd3e9922427453c.gif
 
 ## Install in your project
 
