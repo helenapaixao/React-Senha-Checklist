@@ -33,14 +33,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sators/react-password-checklist.git"
+    "url": "git+https://github.com/helenapaixao/react-senha-checklist.git"
   },
   "author": "Helena Paixão <hp.helenapaixao@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sators/react-password-checklist/issues"
+    "url": "https://github.com/helenapaixao/react-senha-checklist/issues"
   },
-  "homepage": "https://github.com/sators/react-password-checklist#readme",
+  "homepage": "https://github.com/helenapaixao/react-senha-checklist#readme",
   "dependencies": {
     "styled-components": "^5.1.1"
   },
