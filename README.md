@@ -1,4 +1,8 @@
 # React Senha Checklist
+
+
+[![NPM](https://nodei.co/npm/react-senha-checklist.png?compact=true)](https://nodei.co/npm/react-senha-checklist/)
+
 [![npm version](https://badge.fury.io/js/react-senha-checklist.svg)](https://badge.fury.io/js/react-senha-checklist) ![NPM License](https://img.shields.io/npm/l/react-senha-checklist) 
 
 Um componente React para exibir o sucesso ou a falha das regras de força da senha que são atualizadas conforme o usuário digita.
