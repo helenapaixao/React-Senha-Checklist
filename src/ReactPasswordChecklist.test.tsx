@@ -2,6 +2,8 @@ import React from "react";
 // import * as ShallowRenderer from 'react-test-renderer/shallow';
 import { mount } from 'enzyme';
 
+
+
 import ReactPasswordChecklist from './index';
 
 describe('ReactPasswordChecklist Test Suite', () => {
