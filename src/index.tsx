@@ -34,11 +34,11 @@ const ReactPasswordProps:React.FC<ReactPasswordChecklistProps> = ({
 			},
 			specialChar: {
 				valid: /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(value),
-				message: "Password has special characters.",
+				message: "Senha com caracteres especiais",
 			},
 			number: {
 				valid: /\d/g.test(value),
-				message: "Password has a number.",
+				message: "Senha número",
 			},
 			capital: {
 				valid: (() => {
@@ -61,7 +61,7 @@ const ReactPasswordProps:React.FC<ReactPasswordChecklistProps> = ({
 			},
 			match: {
 				valid: value.length > 0 && value === valueAgain,
-				message: "Passwords match.",
+				message: "Senhas iguais",
 			},
 		}
 		const enabledRules = rules.filter(rule => Boolean(ruleDefinitions[rule]))
