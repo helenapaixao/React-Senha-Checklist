@@ -5,8 +5,8 @@
 A React Component to display the success or failure of password strength rules that updates as a user types.
 
 ## Example
+![Exemplo](https://i.picasion.com/pic90/7496f8895df49b059bd3e9922427453c.gif)
 
-https://i.picasion.com/pic90/7496f8895df49b059bd3e9922427453c.gif
 
 ## Install in your project
 
