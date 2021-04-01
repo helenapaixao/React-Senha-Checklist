@@ -39,7 +39,7 @@ const ReactPasswordProps:React.FC<ReactPasswordChecklistProps> = ({
 			},
 			number: {
 				valid: /\d/g.test(value),
-				message: "senha numerais",
+				message: "Senha com números",
 			},
 			capital: {
 				valid: (() => {
@@ -67,7 +67,7 @@ const ReactPasswordProps:React.FC<ReactPasswordChecklistProps> = ({
 			
 	equalNumber : {
 	valid: /^(\d)\1{10}/.test(value),
-	message:"Não pode conter 3 caractreres iguais em sequência (ex:aaaa)"
+	message:"Não pode conter 3 caracteres iguais em sequência (ex:aaaa)"
 },
 		}
 		const enabledRules = rules.filter(rule => Boolean(ruleDefinitions[rule]))
@@ -113,17 +113,18 @@ const Rule:React.FC<RuleProps> = ({ valid, iconSize, validColor, invalidColor, c
 			className={valid ? "valid" : "invalid"}
 		>
 
-			<FaCheckCircle width={iconSize} height={iconSize} color="#CFCFCF" >
-	
-		{valid ? <FaCheckCircle color={validColor}/>  : 
-		 <FaCheckCircle color={invalidColor}/> } 
-		 	
- 
- </FaCheckCircle>
 
-<Container>
+	
+		
+    {valid ? (
+      <FaCheckCircle width={iconSize} height={iconSize} color={validColor} />
+    ) : (
+			<FaCheckCircle width={iconSize} height={iconSize} color="#666" />
+    )}
+ 
+
+
 			<span>{children}</span>
-			</Container>
 		</LI>
 	)
 }
@@ -150,9 +151,9 @@ margin-left:10px;
 		opacity: ${props => props.className === "valid" ? 1 : 0.5}
 	}
 `
-const Icon = styled.svg`
-	margin-right: 5px;
-`
+//const Icon = styled.svg`
+////	margin-right: 5px;
+//`
 
 ReactPasswordProps.defaultProps = {
 	iconSize: 12,
