@@ -134,11 +134,7 @@ const UL = styled.ul`
 	padding: 0;
 `
 
-const Container = styled.div`
-margin-left:10px;
-margin-top: 10px;
 
-`;
 
 const LI = styled.li`
 margin-left:10px;
