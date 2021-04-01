@@ -1,8 +1,7 @@
 # React Senha Checklist
 [![npm version](https://badge.fury.io/js/react-senha-checklist.svg)](https://badge.fury.io/js/react-senha-checklist) ![NPM License](https://img.shields.io/npm/l/react-senha-checklist) 
-<br /> [![Build Status](https://travis-ci.org/helenapaixao/react-senha-checklist.svg?branch=master)](https://travis-ci.org/sators/react-senha-checklist) [![Coverage Status](https://coveralls.io/repos/github/helenapaixao/react-senha-checklist/badge.svg?branch=master)](https://coveralls.io/github/helenapaixao/react-senha-checklist?branch=master) [![Issues](https://img.shields.io/github/issues/helenapaixao/react-senha-checklist)](https://github.com/helenapaixao/react-senha-checklist/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/helenapaixao/react-password-checklist)](https://github.com/helenapaixao/react-password-checklist/pulls) [![Twitter](https://img.shields.io/twitter/follow/helenapaixao.svg?style=social&label=@helenapaixao)](https://twitter.com/helenapaixao)
 
-A React Component to display the success or failure of password strength rules that updates as a user types.
+Um componente React para exibir o sucesso ou a falha das regras de força da senha que são atualizadas conforme o usuário digita.
 
 ## Example
 ![Exemplo](https://i.picasion.com/pic90/7496f8895df49b059bd3e9922427453c.gif)
