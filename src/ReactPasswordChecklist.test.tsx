@@ -24,7 +24,7 @@ describe('ReactPasswordChecklist Test Suite', () => {
 				minLength={6}
 				value=""
 			/>)
-			expect(result.find('span').text()).toEqual("Password has more than 6 characters.")
+			expect(result.find('span').text()).toEqual("Devem conter entre 6 e 30 caracteres")
 		});
 		it('Sets invalid', () => {
 			const result = mount(<ReactPasswordChecklist
@@ -49,7 +49,7 @@ describe('ReactPasswordChecklist Test Suite', () => {
 				rules={["specialChar"]}
 				value=""
 			/>)
-			expect(result.find('span').text()).toEqual("Password has special characters.")
+			expect(result.find('span').text()).toEqual("Senha com caracteres especiais")
 		});
 		it('Sets invalid', () => {
 			const result = mount(<ReactPasswordChecklist
@@ -72,7 +72,7 @@ describe('ReactPasswordChecklist Test Suite', () => {
 				rules={["capital"]}
 				value=""
 			/>)
-			expect(result.find('span').text()).toEqual("Password has a capital letter.")
+			expect(result.find('span').text()).toEqual("A senha tem uma letra maiúscula.")
 		});
 		it('Sets invalid', () => {
 			const result = mount(<ReactPasswordChecklist
@@ -95,7 +95,7 @@ describe('ReactPasswordChecklist Test Suite', () => {
 				rules={["number"]}
 				value=""
 			/>)
-			expect(result.find('span').text()).toEqual("Password has a number.")
+			expect(result.find('span').text()).toEqual("Senha com números")
 		});
 		it('Sets invalid', () => {
 			const result = mount(<ReactPasswordChecklist
@@ -119,7 +119,7 @@ describe('ReactPasswordChecklist Test Suite', () => {
 				value="test"
 				valueAgain="test"
 			/>)
-			expect(result.find('span').text()).toEqual("Passwords match.")
+			expect(result.find('span').text()).toEqual("Senhas iguais")
 		});
 		it('Sets invalid when empty', () => {
 			const result = mount(<ReactPasswordChecklist
