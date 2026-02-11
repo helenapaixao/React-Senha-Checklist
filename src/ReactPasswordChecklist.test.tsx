@@ -24,7 +24,7 @@ describe('ReactPasswordChecklist Test Suite', () => {
 				minLength={6}
 				value=""
 			/>)
-			expect(result.find('span').text()).toEqual("Devem conter entre 6 e 30 caracteres")
+			expect(result.find('span').text()).toEqual("Mínimo de 6 caracteres")
 		});
 		it('Sets invalid', () => {
 			const result = mount(<ReactPasswordChecklist

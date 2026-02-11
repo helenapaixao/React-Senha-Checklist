@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { FaCheckCircle } from 'react-icons/fa'
 
@@ -9,8 +9,9 @@ interface PasswordProps {
   iconSize?: number
   validColor?: string
   invalidColor?: string
-  onChange?: (isValid: boolean) => any
+  onChange?: (isValid: boolean) => void
 }
+
 export type RuleNames =
   | 'length'
   | 'specialChar'
@@ -22,79 +23,67 @@ export type RuleNames =
 export interface ReactPasswordChecklistProps extends PasswordProps {
   className?: string
   style?: React.CSSProperties
-  rules: Array<RuleNames>
+  rules: RuleNames[]
 }
-const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
+
+const ReactPasswordChecklist: React.FC<ReactPasswordChecklistProps> = ({
   className,
   style,
   rules,
   value,
-  valueAgain,
+  valueAgain = '',
   minLength,
   onChange,
   ...remainingProps
 }) => {
   const [isValid, setIsValid] = useState(false)
-  const ruleDefinitions: {
-    [key in RuleNames]: { valid: boolean; message: string }
-  } = {
-    length: {
-      valid: value.length >= (minLength || 100),
-      message: `Devem conter entre ${minLength} e 30 caracteres`
-    },
-    specialChar: {
-      // valid: /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(value),
-      valid: /[^a-zA-Z0-9]+/g.test(value),
-      message: 'Senha com caracteres especiais'
-    },
-    number: {
-      valid: /\d/g.test(value),
-      message: 'Senha com números'
-    },
-    capital: {
-      valid: (() => {
-        var i = 0
-        if (value.length === 0) {
-          return false
-        }
-        while (i < value.length) {
-          const character = value.charAt(i)
-          if (character == character.toLowerCase()) {
-            // Character is lowercase, numeric, or a symbol
-          } else if (character == character.toUpperCase()) {
-            return true
-          }
-          i++
-        }
-        return false
-      })(),
-      message: 'A senha tem uma letra maiúscula.'
-    },
-    match: {
-      valid: value.length > 0 && value === valueAgain,
-      message: 'Senhas iguais'
-    },
 
-    equalNumber: {
-      valid: /^(\d)\1{10}/.test(value),
-      message: 'Não pode conter 3 caracteres iguais em sequência (ex:aaaa)'
-    }
-  }
-  const enabledRules = rules.filter((rule) => Boolean(ruleDefinitions[rule]))
+  const ruleDefinitions = useMemo(() => {
+    const min = minLength ?? 0
+    return {
+      length: {
+        valid: value.length >= min,
+        message: `Mínimo de ${min} caracteres`
+      },
+      specialChar: {
+        valid: /[^a-zA-Z0-9]/.test(value),
+        message: 'Senha com caracteres especiais'
+      },
+      number: {
+        valid: /\d/.test(value),
+        message: 'Senha com números'
+      },
+      capital: {
+        valid: /[A-Z]/.test(value),
+        message: 'A senha tem uma letra maiúscula'
+      },
+      match: {
+        valid: value.length > 0 && value === valueAgain,
+        message: 'Senhas iguais'
+      },
+      equalNumber: {
+        valid: !/(.)\1{2}/.test(value),
+        message: 'Não pode conter 3 caracteres iguais em sequência (ex: aaaa)'
+      }
+    } as const
+  }, [value, valueAgain, minLength])
+
+  const enabledRules = useMemo(
+    () => rules.filter((rule) => rule in ruleDefinitions),
+    [rules, ruleDefinitions]
+  )
+
   useEffect(() => {
-    if (enabledRules.every((rule) => ruleDefinitions[rule].valid)) {
-      setIsValid(true)
-    } else {
-      setIsValid(false)
-    }
-  }, [value, valueAgain])
+    const allValid = enabledRules.every((rule) => ruleDefinitions[rule].valid)
+    setIsValid(allValid)
+  }, [enabledRules, ruleDefinitions])
+
   useEffect(() => {
-    if (typeof onChange === 'function') {
-      onChange(isValid)
-    }
-  }, [isValid])
+    onChange?.(isValid)
+  }, [isValid, onChange])
+
   return (
-    <UL className={className} style={style}>
+    <UL className={className} style={style} role="list">
       {enabledRules.map((rule) => {
         const { message, valid } = ruleDefinitions[rule]
         return (
@@ -115,48 +104,42 @@ interface RuleProps {
 }
 const Rule: React.FC<RuleProps> = ({
   valid,
-  iconSize,
-  validColor,
-  invalidColor,
+  iconSize = 12,
+  validColor = '#4BCA81',
+  invalidColor = '#FF0033',
   children
-}) => {
-  return (
-    <LI className={valid ? 'valid' : 'invalid'}>
-      {valid ? (
-        <FaCheckCircle width={iconSize} height={iconSize} color={validColor} />
-      ) : (
-        <FaCheckCircle width={iconSize} height={iconSize} color='#666' />
-      )}
-
-      <span>{children}</span>
-    </LI>
-  )
-}
+}) => (
+  <LI className={valid ? 'valid' : 'invalid'} role="listitem">
+    <FaCheckCircle
+      size={iconSize}
+      color={valid ? validColor : invalidColor}
+      aria-hidden
+    />
+    <span>{children}</span>
+  </LI>
+)
 
 const UL = styled.ul`
   margin: 0;
   padding: 0;
 `
 
-const LI = styled.li`
-  margin-left: 10px;
-  list-style-type: none;
+const LI = styled.li<{ className?: string }>`
+  list-style: none;
   display: flex;
   align-items: center;
-  margin: 2px 0;
+  gap: 8px;
+  margin: 4px 0 4px 10px;
+
   & > span {
-    padding-top: 2px;
-    opacity: ${(props) => (props.className === 'valid' ? 1 : 0.5)};
+    opacity: ${(props) => (props.className === 'valid' ? 1 : 0.6)};
   }
 `
-//const Icon = styled.svg`
-////	margin-right: 5px;
-//`
 
-ReactPasswordProps.defaultProps = {
+ReactPasswordChecklist.defaultProps = {
   iconSize: 12,
   validColor: '#4BCA81',
   invalidColor: '#FF0033'
 }
 
-export default ReactPasswordProps
+export default ReactPasswordChecklist

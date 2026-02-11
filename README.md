@@ -1,99 +1,114 @@
 # React Senha Checklist
 
-
 [![NPM](https://nodei.co/npm/react-senha-checklist.png?compact=true)](https://nodei.co/npm/react-senha-checklist/)
+[![npm version](https://badge.fury.io/js/react-senha-checklist.svg)](https://badge.fury.io/js/react-senha-checklist)
+[![NPM License](https://img.shields.io/npm/l/react-senha-checklist.svg)](https://www.npmjs.com/package/react-senha-checklist)
 
-[![npm version](https://badge.fury.io/js/react-senha-checklist.svg)](https://badge.fury.io/js/react-senha-checklist) ![NPM License](https://img.shields.io/npm/l/react-senha-checklist) 
+Componente React para exibir em tempo real o cumprimento das regras de força da senha, atualizando conforme o usuário digita.
 
-Um componente React para exibir o sucesso ou a falha das regras de força da senha que são atualizadas conforme o usuário digita.
+## Exemplo
 
-## Example
 ![Exemplo](https://i.picasion.com/pic90/7496f8895df49b059bd3e9922427453c.gif)
 
+## Instalação
 
-## Install in your project
-
-`npm install --save react-senha-checklist`
-
-`yarn add react-senha-checklist`
-
-_Note: react is a peer dependency. You should be using this in a React project._
-
-## Example Usage
-
+```bash
+npm install --save react-senha-checklist
 ```
-import React, {useState} from "react"
-import PasswordChecklist from "react-senha-checklist"
+
+ou com Yarn:
+
+```bash
+yarn add react-senha-checklist
+```
+
+> **Nota:** O React é uma dependência peer. Use este pacote dentro de um projeto React.
+
+## Uso básico
+
+```jsx
+import React, { useState } from "react";
+import ReactPasswordChecklist from "react-senha-checklist";
 
 const SignUp = () => {
-	const [password, setPassword] = useState("")
-	const [passwordAgain, setPasswordAgain] = useState("")
-	return (
-		<form>
-			<label>Password:</label>
-			<input type="password" onChange={e => setPassword(e.target.value)}>
-			<label>Password Again:</label>
-			<input type="password" onChange={e => setPasswordAgain(e.target.value)}>
+  const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
 
-			<PasswordChecklist
-				rules={["length","specialChar","number","capital","match"]}
-				minLength={5}
-				value={password}
-				valueAgain={passwordAgain}
-				onChange={(isValid) => {}}
-			/>
-		</form>
-	)
-}
+  return (
+    <form>
+      <label htmlFor="password">Senha:</label>
+      <input
+        id="password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <label htmlFor="passwordAgain">Repetir senha:</label>
+      <input
+        id="passwordAgain"
+        type="password"
+        value={passwordAgain}
+        onChange={(e) => setPasswordAgain(e.target.value)}
+      />
+
+      <ReactPasswordChecklist
+        rules={["length", "specialChar", "number", "capital", "match"]}
+        minLength={8}
+        value={password}
+        valueAgain={passwordAgain}
+        onChange={(isValid) => console.log("Senha válida:", isValid)}
+      />
+    </form>
+  );
+};
 ```
 
+## Regras disponíveis
 
+Escolha as regras na ordem em que deseja exibi-las.
 
-## Available Rules
-
-Customize the component to display only the rules you need in the desired order you wish to display them.
-
-#### length
-Valid if the password meets the minimum length. Requires `minLength` prop to be included.
-
-#### specialChar
-
-Valid if the password contains a special character from `~!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?`.
-
-#### number
-
-Valid if the password contains a number.
-
-#### capital
-
-Valid if the password contains a capital letter.
-
-#### match
-
-Valid if the password matches the confirm password valud. Requires `valueAgain` prop to be included.
-
+| Regra | Descrição |
+|-------|-----------|
+| **length** | Válida se a senha atinge o comprimento mínimo. Requer a prop `minLength`. |
+| **specialChar** | Válida se a senha contém pelo menos um caractere especial (não alfanumérico). |
+| **number** | Válida se a senha contém pelo menos um número. |
+| **capital** | Válida se a senha contém pelo menos uma letra maiúscula. |
+| **match** | Válida se a senha é igual à confirmação. Requer a prop `valueAgain`. |
+| **equalNumber** | Válida se a senha **não** contém 3 caracteres iguais em sequência (ex.: `aaaa`). |
 
 ## Props
 
-| Prop  | Description  | Type  | Required  | Default  |
-|---|---|---|---|---|
-|  rules | Rules to display in the order desired.<br />Options are `length`, `specialChar`,<br />`number`, `capital`, `match`  | array  | yes |
-|  value | Current potential password  | string  | yes |
-|  minLength | Minimum Password Length  | number  | Only with<br />`length` rule |
-|  valueAgain | Current potential password confirmation  | string  | Only with<br />`match` rule |
-|  onChange | Callback that is triggered when the<br />password becomes valid or invalid across<br />all rules. | function  |  | `(isValid) => {}`
-|  className | Class applied to the entire component  | string  |  |
-|  style | Inline styles applied to the<br />outer component wrapper  | object  |  |
-|  iconSize | Size of ✔ or 𐄂 icon  | number  |  | `18` |
-|  validColor | Color of checkmark icon  | string  |  | `#4BCA81` |
-|  invalidColor | Color of X icon  | string  |  | `#FF0033` |
+| Prop | Descrição | Tipo | Obrigatória | Padrão |
+|------|-----------|------|-------------|--------|
+| **rules** | Regras a exibir, na ordem desejada. Valores: `length`, `specialChar`, `number`, `capital`, `match`, `equalNumber` | `RuleNames[]` | Sim | — |
+| **value** | Valor atual do campo de senha | `string` | Sim | — |
+| **minLength** | Comprimento mínimo da senha | `number` | Com regra `length` | — |
+| **valueAgain** | Valor atual do campo de confirmação da senha | `string` | Com regra `match` | — |
+| **onChange** | Callback chamado quando a senha passa a ser válida ou inválida em todas as regras | `(isValid: boolean) => void` | Não | — |
+| **className** | Classe CSS aplicada ao container do componente | `string` | Não | — |
+| **style** | Estilos inline no container | `React.CSSProperties` | Não | — |
+| **iconSize** | Tamanho do ícone (✔ / ✗) em pixels | `number` | Não | `12` |
+| **validColor** | Cor do ícone quando a regra está válida | `string` | Não | `#4BCA81` |
+| **invalidColor** | Cor do ícone quando a regra está inválida | `string` | Não | `#FF0033` |
 
-## Available Classes
-* `.valid` - Valid Message
-* `.invalid` - Invalid Message
+## Classes CSS
 
-## Run Locally
+- **`.valid`** — Item de regra cumprida
+- **`.invalid`** — Item de regra não cumprida
 
-`npm run storybook`
+## Desenvolvimento
 
-`yarn storybook`
+Para rodar o Storybook localmente:
+
+```bash
+npm run storybook
+# ou
+yarn storybook
+```
+
+Acesse [http://localhost:9009](http://localhost:9009).
+
+## Licença
+
+MIT © [Helena Paixão](https://github.com/helenapaixao)
